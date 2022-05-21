@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/prop-types */
-import Layout from '../components/Layout';
+import Page from '../components/Page';
 
 export default function App({ Component, pageProps }) {
   return (
-    <Layout>
+    <Page>
       <Component {...pageProps} />
-    </Layout>
+    </Page>
   );
 }
