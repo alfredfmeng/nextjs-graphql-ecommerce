@@ -1,21 +1,20 @@
 import { createAuth } from '@keystone-next/auth';
 import { config, createSchema } from '@keystone-next/keystone/schema';
-import { User } from './schemas/User';
-import { Product } from './schemas/Product';
 import 'dotenv/config';
 import {
   withItemData,
   statelessSessions,
 } from '@keystone-next/keystone/session';
+import { User } from './schemas/User';
+import { Product } from './schemas/Product';
+import { ProductImage } from './schemas/ProductImage';
 
-const cookieSecret = 'INeedThisToBeThirtyTwoCharactersLongSoHereIAmTypingAway';
-const frontendURL = 'http://localhost:7777/';
 const databaseURL =
-  'mongodb+srv://alfredfmeng:oow0DTl6HxlwPqKL@cluster0.s1fsj.mongodb.net/?retryWrites=true&w=majority';
+  process.env.DATABASE_URL || 'mongodb://localhost/keystone-sick-fits-tutorial';
 
 const sessionConfig = {
   maxAge: 60 * 60 * 24 * 360,
-  secret: cookieSecret,
+  secret: process.env.COOKIE_SECRET,
 };
 
 const { withAuth } = createAuth({
@@ -32,7 +31,7 @@ export default withAuth({
   // @ts-ignore
   server: {
     cors: {
-      origin: [frontendURL],
+      origin: [process.env.FRONTEND_URL],
       credentials: true,
     },
   },
@@ -43,6 +42,7 @@ export default withAuth({
   lists: createSchema({
     User,
     Product,
+    ProductImage,
   }),
   ui: {
     isAccessAllowed: ({ session }) => !!session?.data,
