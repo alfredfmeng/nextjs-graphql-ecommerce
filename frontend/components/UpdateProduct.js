@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import useForm from '../lib/useForm';
 import DisplayError from './ErrorMessage';
 import Form from './styles/Form';
+import Router from 'next/router';
 
 const SINGLE_PRODUCT_QUERY = gql`
   query SINGLE_PRODUCT_QUERY($id: ID!) {
@@ -34,6 +35,7 @@ const UPDATE_PRODUCT_MUTATION = gql`
   }
 `;
 
+// eslint-disable-next-line react/prop-types
 export default function UpdateProduct({ id }) {
   const { data, error, loading } = useQuery(SINGLE_PRODUCT_QUERY, {
     variables: { id },
@@ -55,6 +57,10 @@ export default function UpdateProduct({ id }) {
             description: inputs.description,
             price: inputs.price,
           },
+        }).catch(console.error);
+        console.log(res);
+        Router.push({
+          pathname: `/product/${res.data.updateProduct.id}`,
         });
       }}
     >
@@ -67,7 +73,7 @@ export default function UpdateProduct({ id }) {
             id="name"
             name="name"
             placeholder="Name"
-            value={inputs.name}
+            value={inputs.name || ''}
             onChange={handleChange}
           />
         </label>
@@ -78,7 +84,7 @@ export default function UpdateProduct({ id }) {
             id="price"
             name="price"
             placeholder="price"
-            value={inputs.price}
+            value={inputs.price || ''}
             onChange={handleChange}
           />
         </label>
@@ -88,7 +94,7 @@ export default function UpdateProduct({ id }) {
             id="description"
             name="description"
             placeholder="Description"
-            value={inputs.description}
+            value={inputs.description || ''}
             onChange={handleChange}
           />
         </label>
