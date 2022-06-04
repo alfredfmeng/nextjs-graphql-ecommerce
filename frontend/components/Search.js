@@ -37,7 +37,6 @@ export default function Search() {
     }
   );
   const items = data?.searchTerms || [];
-  console.log(data);
   const findItemsWithDelay = React.useCallback(debounce(findItems, 350), [
     findItems,
   ]);
