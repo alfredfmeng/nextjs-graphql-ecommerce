@@ -26,10 +26,9 @@ export default function RequestReset() {
     }
   );
   async function handleSubmit(e) {
-    e.preventDefault(); // stop the form from submitting
+    e.preventDefault();
     const res = await signup().catch(console.error);
     resetForm();
-    // Send the email and password to the graphqlAPI
   }
   return (
     <Form method="POST" onSubmit={handleSubmit}>
