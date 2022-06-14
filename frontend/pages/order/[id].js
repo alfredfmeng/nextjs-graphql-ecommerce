@@ -40,7 +40,7 @@ export default function SingleOrderPage({ query }) {
   return (
     <OrderStyles>
       <Head>
-        <title>Sick Fits - {order.id}</title>
+        <title>Next.js + GraphQL - {order.id}</title>
       </Head>
       <p>
         <span>Order Id:</span>
