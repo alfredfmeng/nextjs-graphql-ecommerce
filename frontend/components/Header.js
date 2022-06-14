@@ -40,7 +40,7 @@ export default function Header() {
     <HeaderStyles>
       <div className="bar">
         <Logo>
-          <Link href="/">Sick fits</Link>
+          <Link href="/">Next.js + GraphQL</Link>
         </Logo>
         <Nav />
       </div>
