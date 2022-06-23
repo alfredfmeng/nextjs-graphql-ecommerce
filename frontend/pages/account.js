@@ -1,3 +1,14 @@
+import Head from 'next/head';
+import { useUser } from '../components/User';
+
 export default function Account() {
-  return <p>Hello from account.js!</p>;
+  const me = useUser();
+  return (
+    <div>
+      <Head>
+        <title>My Account</title>
+      </Head>
+      <h1>Hello {me.name}!</h1>
+    </div>
+  );
 }
