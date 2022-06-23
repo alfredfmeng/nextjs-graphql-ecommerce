@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
+import { useUser } from './User';
 
 const DELETE_PRODUCT_MUTATION = gql`
   mutation DELETE_PRODUCT_MUTATION($id: ID!) {
@@ -24,6 +25,8 @@ export default function DeleteProduct({ id, children }) {
       update,
     }
   );
+  const me = useUser();
+  if (!me?.role) return null;
   return (
     <button
       type="button"
